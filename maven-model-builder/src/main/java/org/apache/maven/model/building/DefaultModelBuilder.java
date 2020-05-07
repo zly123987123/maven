@@ -1415,20 +1415,13 @@ public class DefaultModelBuilder
                     {
                         if ( exclusion.getGroupId() != null && exclusion.getArtifactId() != null )
                         {
-                            for ( final Iterator<Dependency> dependencies = importMgmt.getDependencies().iterator();
-                                dependencies.hasNext(); )
-                            {
-                                final Dependency candidate = dependencies.next();
-
-                                if ( ( exclusion.getGroupId().equals( "*" )
-                                    || exclusion.getGroupId().equals( candidate.getGroupId() ) )
-                                    && ( exclusion.getArtifactId().equals( "*" )
-                                    || exclusion.getArtifactId().equals( candidate.getArtifactId() ) ) )
-                                {
-                                    // Dependency excluded from import.
-                                    dependencies.remove();
-                                }
-                            }
+                            // Dependency excluded from import.
+                            importMgmt.getDependencies()
+                                    .removeIf( candidate -> (
+                                            exclusion.getGroupId().equals( "*" ) ||
+                                                    exclusion.getGroupId().equals( candidate.getGroupId() ) )
+                                            && ( exclusion.getArtifactId().equals( "*" ) ||
+                                                    exclusion.getArtifactId().equals( candidate.getArtifactId() ) ) );
                         }
                     }
 
