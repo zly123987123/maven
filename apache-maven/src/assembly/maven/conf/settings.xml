@@ -245,9 +245,7 @@ under the License.
     </profile>
     -->
     <profile>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
+      <id>maven:core:central-repo</id>
       <repositories>
         <repository>
           <id>central</id>
@@ -278,9 +276,11 @@ under the License.
   <!-- activeProfiles
    | List of profiles that are active for all builds.
    |
-  <activeProfiles>
-    <activeProfile>alwaysActiveProfile</activeProfile>
-    <activeProfile>anotherAlwaysActiveProfile</activeProfile>
-  </activeProfiles>
   -->
+  <activeProfiles>
+    <activeProfile>maven:core:central-repo</activeProfile>
+    <!--
+    activeProfile>anotherAlwaysActiveProfile</activeProfile>
+    -->
+  </activeProfiles>
 </settings>
