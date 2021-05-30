@@ -75,26 +75,6 @@ public class DefaultModelNormalizer
                 build.setPlugins( new ArrayList<>( normalized.values() ) );
             }
         }
-
-        /*
-         * NOTE: This is primarily to keep backward-compat with Maven 2.x which did not validate that dependencies are
-         * unique within a single POM. Upon multiple declarations, 2.x just kept the last one but retained the order of
-         * the first occurrence. So when we're in lenient/compat mode, we have to deal with such broken POMs and mimic
-         * the way 2.x works. When we're in strict mode, the removal of duplicates just saves other merging steps from
-         * aftereffects and bogus error messages.
-         */
-        List<Dependency> dependencies = model.getDependencies();
-        Map<String, Dependency> normalized = new LinkedHashMap<>( dependencies.size() * 2 );
-
-        for ( Dependency dependency : dependencies )
-        {
-            normalized.put( dependency.getManagementKey(), dependency );
-        }
-
-        if ( dependencies.size() != normalized.size() )
-        {
-            model.setDependencies( new ArrayList<>( normalized.values() ) );
-        }
     }
 
     /**
