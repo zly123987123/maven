@@ -147,8 +147,8 @@ public class MavenProject
 
     private Artifact artifact;
 
-    private final ThreadLocal<ArtifactsHolder> threadLocalArtifactsHolder =
-        ThreadLocal.withInitial( ArtifactsHolder::new );
+    private final InheritableThreadLocal<ArtifactsHolder> threadLocalArtifactsHolder =
+        InheritableThreadLocal.withInitial( ArtifactsHolder::new );
 
     private Model originalModel;
 
