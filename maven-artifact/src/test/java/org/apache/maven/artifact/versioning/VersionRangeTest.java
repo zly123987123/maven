@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -753,6 +754,7 @@ public class VersionRangeTest
         restrictions = version.getRestrictions();
         assertEquals( 0, restrictions.size(), CHECK_NUM_RESTRICTIONS );
 
-        assertFalse( spec.equals( version ), "check !VersionRange.createFromVersionSpec(x).equals(VersionRange.createFromVersion(x))" );
+        assertNotEquals( spec, version,
+                "check !VersionRange.createFromVersionSpec(x).equals(VersionRange.createFromVersion(x))" );
     }
 }
